@@ -15,7 +15,7 @@ function reload() {
 
 gulp.task('cp-html', function(){
 
-    return gulp.src(['index.html',
+    return gulp.src(['src/index.html',
 		     'src/html/**/*.html'])
 	.pipe(gulp.dest('dist'))
 	.pipe(reload());    
@@ -51,7 +51,7 @@ gulp.task('cp-images', function(){
 gulp.task('build', ['cp-html','cp-bower','cp-images','cp-css','cp-js']);
 
 gulp.task('watch', function(){
-    gulp.watch('index.html',['cp-html'])
+    gulp.watch('src/**/*.html',['cp-html'])
     gulp.watch('src/img/**/*.jpeg',['cp-images'])
     gulp.watch('src/img/**/*.jpg',['cp-images'])
     gulp.watch('src/img/**/*.png',['cp-images'])        
