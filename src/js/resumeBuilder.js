@@ -2,7 +2,7 @@ var bio = {
     name : "Daniel Larkin",
     role : "Front end Web Developer",
     contacts : {
-	mobile  : "+447513452404",
+	mobile  : "+44123456789",
 	email   : "daniel.larkin@gmail.com",
 	github  : "daniellarkin",
 	twitter : "@daniellarkin",
@@ -184,6 +184,7 @@ bio.display();
 work.display();
 projects.display();
 education.display();
+$('#mapDiv').append(googleMap);
 bio.display_footer_contact();
 //-------------------------------------------------------------------------------------------
 
