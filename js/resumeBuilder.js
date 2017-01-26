@@ -14,11 +14,11 @@ var bio = {
     display: function() {
         $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
         $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
-        $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-        $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-        $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-        $("#topContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-        $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+        $("#topContacts, #footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+        $("#topContacts, #footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+        $("#topContacts, #footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+        $("#topContacts, #footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+        $("#topContacts, #footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
         $("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
         $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
         $("#header").append(HTMLskillsStart);
@@ -27,13 +27,6 @@ var bio = {
             $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
         }
     },
-    display_footer_contact: function() {
-        $("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-        $("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-        $("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-        $("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-        $("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
-    }
 };
 
 var education = {
@@ -146,24 +139,29 @@ var work = {
 
 
 var projects = {
-    "proj": [{
+    "projects": [{
         "title": "Super-duber Megatron",
         "dates": "1/1/2000-1/1/2001",
         "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat",
-        "images": ["img/AdobeStock_32535416_256.jpeg"]
+        "images": ["img/AdobeStock_32535416_256.jpeg","img/AdobeStock_1917648_256.jpeg"]
     }],
     display: function() {
+	var i, item;
         $("#projects").append(HTMLprojectStart);
-        for (var i = 0; i < projects.proj.length; i++) {
-            var formattedProjectsTitle = HTMLprojectTitle.replace("%data%", projects.proj[i].title);
-            var formattedProjectsDates = HTMLprojectDates.replace("%data%", projects.proj[i].dates);
-            var formattedProjectsDescription = HTMLprojectDescription.replace("%data%", projects.proj[i].description);
-            var formattedProjectsImage = HTMLprojectImage.replace("%data%", projects.proj[i].images);
+        for (i = 0; i < projects.projects.length; i++) {
+            var formattedProjectsTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
+            var formattedProjectsDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+            var formattedProjectsDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
+
 
             $(".project-entry").append(formattedProjectsTitle);
             $(".project-entry").append(formattedProjectsDates);
             $(".project-entry").append(formattedProjectsDescription);
-            $(".project-entry").append(formattedProjectsImage);
+
+	          for (item in projects.projects[i].images) {
+              var formattedProjectsImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[item]);
+		          $(".project-entry").append(formattedProjectsImage);
+            }
         }
     }
 };
@@ -177,5 +175,4 @@ work.display();
 projects.display();
 education.display();
 $('#mapDiv').append(googleMap);
-bio.display_footer_contact();
 //-------------------------------------------------------------------------------------------
